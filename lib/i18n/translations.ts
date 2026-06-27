@@ -97,6 +97,7 @@ const id = {
   leaveEarlyTitle: 'Pulang duluan',
   leaveConfirm: (name: string, round: number) =>
     `${name} akan pulang setelah round ${round}. Lanjutkan?`,
+  liveLeaderboardTitle: 'Leaderboard Live',
   addLatePlayerBtn: 'Tambah Pemain',
   addLatePlayerTitle: 'Tambah Pemain Telat',
   addLatePlayerHint: (round: number) => `Pemain akan masuk mulai round ${round}.`,
@@ -255,6 +256,7 @@ const en: typeof id = {
   leaveEarlyTitle: 'Early departure',
   leaveConfirm: (name: string, round: number) =>
     `${name} will leave after round ${round}. Continue?`,
+  liveLeaderboardTitle: 'Live Leaderboard',
   addLatePlayerBtn: 'Add Player',
   addLatePlayerTitle: 'Add Late Player',
   addLatePlayerHint: (round: number) => `Player will join from round ${round}.`,

@@ -14,7 +14,7 @@ export default async function PlayersPage() {
 
   return (
     <div className="container max-w-2xl mx-auto p-4 space-y-4">
-      <div className="flex items-center justify-between">
+      <div className="animate-in fade-in slide-in-from-bottom-2 duration-500 flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold">{t.playersTitle}</h1>
           <p className="text-sm text-muted-foreground">{t.playersCount(players.length)}</p>

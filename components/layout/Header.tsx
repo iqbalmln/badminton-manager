@@ -12,8 +12,9 @@ export async function Header() {
   return (
     <header className="border-b bg-background sticky top-0 z-50">
       <div className="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between">
-        <Link href="/dashboard" className="font-semibold text-base tracking-tight">
-          Badminton Manager
+        <Link href="/dashboard" className="font-semibold text-base tracking-tight flex items-baseline gap-1.5">
+          CourtMate
+          <span className="text-xs font-normal text-muted-foreground">by TIMOR</span>
         </Link>
 
         <div className="flex items-center gap-1">

@@ -35,7 +35,7 @@ export default async function RankingPage() {
 
   return (
     <div className="container max-w-lg mx-auto p-4 space-y-6">
-      <div className="flex items-center gap-2">
+      <div className="animate-in fade-in slide-in-from-bottom-2 duration-500 flex items-center gap-2">
         <Link href="/dashboard" className={cn(buttonVariants({ variant: 'ghost', size: 'icon' }))}>
           <ArrowLeft className="h-5 w-5" />
         </Link>
@@ -73,7 +73,11 @@ export default async function RankingPage() {
                   if (!row) return <div key={idx} />
                   const medals = ['🥇', '🥈', '🥉']
                   return (
-                    <Card key={row.player_id} className={idx === 0 ? 'border-yellow-400 bg-yellow-50 dark:bg-yellow-950/30' : ''}>
+                    <Card
+                      key={row.player_id}
+                      className={`animate-in fade-in zoom-in-95 duration-500 fill-mode-both ${idx === 0 ? 'border-yellow-400 bg-yellow-50 dark:bg-yellow-950/30' : ''}`}
+                      style={{ animationDelay: `${idx * 100}ms` }}
+                    >
                       <CardContent className="py-3 px-2 text-center">
                         <p className="text-xl">{medals[idx]}</p>
                         <p className="font-bold text-xs leading-tight truncate">{row.name}</p>
@@ -99,7 +103,11 @@ export default async function RankingPage() {
               </TableHeader>
               <TableBody>
                 {monthRows.map((row, i) => (
-                  <TableRow key={row.player_id} className={i === 0 ? 'bg-yellow-50 dark:bg-yellow-950/30 font-semibold' : ''}>
+                  <TableRow
+                    key={row.player_id}
+                    className={`animate-in fade-in slide-in-from-bottom-1 duration-300 fill-mode-both ${i === 0 ? 'bg-yellow-50 dark:bg-yellow-950/30 font-semibold' : ''}`}
+                    style={{ animationDelay: `${Math.min(i * 40, 400)}ms` }}
+                  >
                     <TableCell className="text-muted-foreground">{i + 1}</TableCell>
                     <TableCell>
                       <span className="font-medium">{row.name}</span>

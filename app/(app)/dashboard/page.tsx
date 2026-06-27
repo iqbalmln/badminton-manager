@@ -35,7 +35,7 @@ export default async function DashboardPage() {
 
   return (
     <div className="container max-w-2xl mx-auto p-4 space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="animate-in fade-in slide-in-from-bottom-2 duration-500 flex items-center justify-between">
         <h1 className="text-2xl font-bold">{t.dashboardTitle}</h1>
         {isAdmin && (
           <Link href="/session/new" className={buttonVariants()}>
@@ -47,19 +47,19 @@ export default async function DashboardPage() {
 
       {/* Quick stats */}
       <div className="grid grid-cols-3 gap-3">
-        <Card>
+        <Card className="animate-in fade-in slide-in-from-bottom-2 duration-500 delay-75 fill-mode-both">
           <CardContent className="pt-4">
             <p className="text-xs text-muted-foreground">{t.statActive}</p>
             <p className="text-3xl font-bold">{activeSessions.length}</p>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="animate-in fade-in slide-in-from-bottom-2 duration-500 delay-150 fill-mode-both">
           <CardContent className="pt-4">
             <p className="text-xs text-muted-foreground">{t.statTotalSessions}</p>
             <p className="text-3xl font-bold">{sessions.length}</p>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="animate-in fade-in slide-in-from-bottom-2 duration-500 delay-300 fill-mode-both">
           <CardContent className="pt-4">
             <p className="text-xs text-muted-foreground">{t.statThisMonth}</p>
             <p className="text-3xl font-bold">
@@ -73,8 +73,14 @@ export default async function DashboardPage() {
       {activeSessions.length > 0 && (
         <div className="space-y-2">
           <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">{t.currentlyActive}</h2>
-          {activeSessions.map((s) => (
-            <SessionCard key={s.id} session={s} isAdmin={isAdmin} t={t} statusLabel={statusLabel} />
+          {activeSessions.map((s, i) => (
+            <div
+              key={s.id}
+              className="animate-in fade-in slide-in-from-bottom-2 duration-500 fill-mode-both"
+              style={{ animationDelay: `${i * 60}ms` }}
+            >
+              <SessionCard session={s} isAdmin={isAdmin} t={t} statusLabel={statusLabel} />
+            </div>
           ))}
         </div>
       )}
@@ -83,11 +89,11 @@ export default async function DashboardPage() {
 
       {/* Quick links */}
       <div className="grid grid-cols-2 gap-3">
-        <Link href="/players" className={cn(buttonVariants({ variant: 'outline' }), 'h-16 flex-col gap-1')}>
+        <Link href="/players" className={cn(buttonVariants({ variant: 'outline' }), 'h-16 flex-col gap-1 transition-transform hover:-translate-y-0.5 active:scale-95')}>
           <Users className="h-5 w-5" />
           <span>{t.managePlayers}</span>
         </Link>
-        <Link href="/ranking" className={cn(buttonVariants({ variant: 'outline' }), 'h-16 flex-col gap-1')}>
+        <Link href="/ranking" className={cn(buttonVariants({ variant: 'outline' }), 'h-16 flex-col gap-1 transition-transform hover:-translate-y-0.5 active:scale-95')}>
           <Trophy className="h-5 w-5" />
           <span>{t.monthlyRanking}</span>
         </Link>
@@ -97,14 +103,20 @@ export default async function DashboardPage() {
       {recentSessions.length > 0 && (
         <div className="space-y-2">
           <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">{t.sessionHistory}</h2>
-          {recentSessions.map((s) => (
-            <SessionCard key={s.id} session={s} isAdmin={isAdmin} t={t} statusLabel={statusLabel} />
+          {recentSessions.map((s, i) => (
+            <div
+              key={s.id}
+              className="animate-in fade-in slide-in-from-bottom-2 duration-500 fill-mode-both"
+              style={{ animationDelay: `${i * 60}ms` }}
+            >
+              <SessionCard session={s} isAdmin={isAdmin} t={t} statusLabel={statusLabel} />
+            </div>
           ))}
         </div>
       )}
 
       {sessions.length === 0 && (
-        <div className="text-center py-12 text-muted-foreground">
+        <div className="animate-in fade-in duration-500 text-center py-12 text-muted-foreground">
           <p className="text-lg">{t.noSessions}</p>
           <p className="text-sm mt-1">{t.noSessionsHint}</p>
         </div>

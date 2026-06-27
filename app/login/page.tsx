@@ -13,7 +13,7 @@ export default async function LoginPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
-      <Card className="w-full max-w-sm">
+      <Card className="w-full max-w-sm animate-in fade-in zoom-in-95 duration-500">
         <CardHeader className="text-center">
           <div className="flex justify-center mb-2">
             <ShieldCheck className="h-10 w-10 text-primary" />

@@ -65,8 +65,12 @@ export function PlayerTable({ players, isAdmin }: Props) {
               </TableCell>
             </TableRow>
           )}
-          {players.map((p) => (
-            <TableRow key={p.id} className={!p.is_active ? 'opacity-50' : ''}>
+          {players.map((p, i) => (
+            <TableRow
+              key={p.id}
+              className={`animate-in fade-in slide-in-from-bottom-1 duration-300 fill-mode-both ${!p.is_active ? 'opacity-50' : ''}`}
+              style={{ animationDelay: `${Math.min(i * 40, 400)}ms` }}
+            >
               <TableCell className="font-medium">
                 <Link href={`/players/${p.id}`} className="hover:underline underline-offset-4">
                   {p.name}

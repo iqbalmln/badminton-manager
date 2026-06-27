@@ -1,6 +1,6 @@
 /**
  * TypeScript types generated from schema.sql
- * Reflects the Supabase PostgreSQL schema for Badminton Session Manager.
+ * Reflects the Supabase PostgreSQL schema for CourtMate by TIMOR.
  */
 
 // ----------------------------------------------------------------

@@ -10,11 +10,13 @@ export default async function NewSessionPage() {
 
   return (
     <div className="container max-w-lg mx-auto p-4 space-y-4">
-      <div>
+      <div className="animate-in fade-in slide-in-from-bottom-2 duration-500">
         <h1 className="text-2xl font-bold">{t.newSessionTitle}</h1>
         <p className="text-sm text-muted-foreground">{t.newSessionSubtitle}</p>
       </div>
-      <NewSessionForm players={activePlayers} />
+      <div className="animate-in fade-in slide-in-from-bottom-2 duration-500 delay-100 fill-mode-both">
+        <NewSessionForm players={activePlayers} />
+      </div>
     </div>
   )
 }

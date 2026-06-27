@@ -1,4 +1,4 @@
-# Badminton Session Manager — Project Brief
+# CourtMate by TIMOR — Project Brief
 
 ## Overview
 Web app untuk mengatur sesi permainan badminton komunitas secara otomatis, adil, dan kompetitif.

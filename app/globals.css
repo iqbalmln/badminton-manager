@@ -85,3 +85,22 @@
     @apply bg-background text-foreground antialiased;
   }
 }
+
+@keyframes float-orb-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, -40px) scale(1.1); }
+}
+
+@keyframes float-orb-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-40px, 30px) scale(1.15); }
+}
+
+@keyframes float-orb-3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(20px, 20px) scale(0.95); }
+}
+
+.animate-float-orb-1 { animation: float-orb-1 14s ease-in-out infinite; }
+.animate-float-orb-2 { animation: float-orb-2 18s ease-in-out infinite; }
+.animate-float-orb-3 { animation: float-orb-3 16s ease-in-out infinite; }

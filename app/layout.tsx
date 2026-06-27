@@ -10,8 +10,8 @@ import { getLocale } from '@/lib/i18n/server'
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' })
 
 export const metadata: Metadata = {
-  title: 'Badminton Manager',
-  description: 'Kelola sesi badminton komunitas — matchmaking otomatis & ranking bulanan',
+  title: 'CourtMate by TIMOR',
+  description: 'Kelola sesi olahraga komunitas — matchmaking otomatis & ranking bulanan',
 }
 
 export const viewport: Viewport = {

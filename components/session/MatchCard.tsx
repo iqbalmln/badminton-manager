@@ -13,9 +13,10 @@ import type { MatchWithPlayers } from '@/types'
 interface Props {
   match: MatchWithPlayers
   sessionId: string
+  isAdmin: boolean
 }
 
-export function MatchCard({ match, sessionId }: Props) {
+export function MatchCard({ match, sessionId, isAdmin }: Props) {
   const t = useT()
   const [isPending, startTransition] = useTransition()
   const [editing, setEditing] = useState(false)
@@ -95,7 +96,7 @@ export function MatchCard({ match, sessionId }: Props) {
           </div>
         </div>
 
-        {!isFinished && (
+        {!isFinished && isAdmin && (
           <div className="border-t px-4 py-3">
             {!editing ? (
               <Button className="w-full" size="lg" onClick={() => setEditing(true)}>

@@ -11,11 +11,12 @@ import { AddLatePlayerDialog } from '@/components/session/AddLatePlayerDialog'
 import { Badge } from '@/components/ui/badge'
 import { buttonVariants } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { cn } from '@/lib/utils'
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, Trophy } from 'lucide-react'
 import { createServiceClient } from '@/lib/supabase/server'
 import type { SessionPlayerWithData } from '@/types'
-import type { Player, Session } from '@/types/database'
+import type { Player, Session, SessionLeaderboardRow } from '@/types/database'
 
 export const dynamic = 'force-dynamic'
 
@@ -70,6 +71,12 @@ export default async function SessionPage({ params }: Props) {
 
   const allActivePlayers = (spData ?? []) as unknown as SessionPlayerWithData[]
 
+  const { data: leaderboardData } = await supabase
+    .from('session_leaderboard')
+    .select('*')
+    .eq('session_id', session.id)
+  const leaderboard = (leaderboardData ?? []) as SessionLeaderboardRow[]
+
   const playingIds = new Set(
     currentMatches.flatMap((m) => [
       m.team_a_player1,
@@ -94,7 +101,7 @@ export default async function SessionPage({ params }: Props) {
   return (
     <div className="container max-w-lg mx-auto p-4 space-y-4">
       {/* Header */}
-      <div className="flex items-center gap-2">
+      <div className="animate-in fade-in slide-in-from-bottom-2 duration-500 flex items-center gap-2">
         <Link href="/dashboard" className={cn(buttonVariants({ variant: 'ghost', size: 'icon' }))}>
           <ArrowLeft className="h-5 w-5" />
         </Link>
@@ -123,14 +130,61 @@ export default async function SessionPage({ params }: Props) {
       )}
 
       {/* Controls */}
-      <RoundControls session={session} currentMatches={currentMatches} />
+      {isAdmin && <RoundControls session={session} currentMatches={currentMatches} />}
 
       {/* Match cards */}
       {currentMatches.length > 0 && (
         <div className="space-y-3">
-          {currentMatches.map((m) => (
-            <MatchCard key={m.id} match={m} sessionId={session.id} />
+          {currentMatches.map((m, i) => (
+            <div
+              key={m.id}
+              className="animate-in fade-in slide-in-from-bottom-2 duration-500 fill-mode-both"
+              style={{ animationDelay: `${i * 80}ms` }}
+            >
+              <MatchCard match={m} sessionId={session.id} isAdmin={isAdmin} />
+            </div>
           ))}
+        </div>
+      )}
+
+      {/* Live leaderboard */}
+      {session.status === 'active' && leaderboard.length > 0 && (
+        <div className="space-y-2">
+          <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide flex items-center gap-1.5">
+            <Trophy className="h-4 w-4 text-yellow-500" />
+            {t.liveLeaderboardTitle}
+          </h2>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead className="w-8">#</TableHead>
+                <TableHead>{t.colPlayer}</TableHead>
+                <TableHead className="text-center w-12">{t.matchAbbr}</TableHead>
+                <TableHead className="text-center w-12">{t.winAbbr}</TableHead>
+                <TableHead className="text-center w-12">{t.lossAbbr}</TableHead>
+                <TableHead className="text-right w-16">{t.pts}</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {leaderboard.map((row, i) => (
+                <TableRow
+                  key={row.player_id}
+                  className={`animate-in fade-in slide-in-from-bottom-1 duration-300 fill-mode-both ${i === 0 ? 'bg-yellow-50 dark:bg-yellow-950/30 font-semibold' : ''}`}
+                  style={{ animationDelay: `${Math.min(i * 40, 400)}ms` }}
+                >
+                  <TableCell className="text-muted-foreground">{i + 1}</TableCell>
+                  <TableCell>
+                    <span className="font-medium">{row.name}</span>
+                    <Badge variant="secondary" className="ml-2 text-xs">Lvl {row.level}</Badge>
+                  </TableCell>
+                  <TableCell className="text-center">{row.total_matches}</TableCell>
+                  <TableCell className="text-center text-blue-600">{row.total_wins}</TableCell>
+                  <TableCell className="text-center text-orange-500">{row.total_losses}</TableCell>
+                  <TableCell className="text-right font-bold">{row.points}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
         </div>
       )}
 
