@@ -40,7 +40,7 @@ export default function HomePage() {
             by TIMOR
           </p>
           <p className="mt-2 text-balance text-muted-foreground">
-            Kelola sesi olahraga komunitas secara otomatis dan adil.
+            Kelola sesi olahraga, matchmaking otomatis & ranking bulanan
           </p>
         </div>
 

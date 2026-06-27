@@ -11,7 +11,7 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-sans' })
 
 export const metadata: Metadata = {
   title: 'CourtMate by TIMOR',
-  description: 'Kelola sesi olahraga komunitas — matchmaking otomatis & ranking bulanan',
+  description: 'Kelola sesi olahraga, matchmaking otomatis & ranking bulanan',
 }
 
 export const viewport: Viewport = {
